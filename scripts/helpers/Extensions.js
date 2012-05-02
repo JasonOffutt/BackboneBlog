@@ -12,17 +12,58 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 			        this.onClose.call(this);
 			    }
 			};
+		}
+		hydrateBlog = function() {
+			var posts = [],
+				title;
+			for (var i = 0; i < 5; i++) {
+				posts.push({
+					title: 'Post #' + (i + 1),
+					content: 'This is a spiffy blog post.',
+					author: 'Ima Testguy',
+					postDate: new Date()
+				});
+			}
+			return posts;
 		},
 		extendSync = function() {
 			
 			// Overriding `Backbone.synd()` here to use HTML5 local storage rather than sending
 			// the call out to a server.
-			Backbone.sync = function(method, model) {
+			Backbone.sync = function(method, model, options) {
 				// Wrapping load operations for local storage API in a jQuery Deferred to preserve
 				// the interface of `sync`. Generally, you can expect to receive back the expression
 				// result of `$.ajax` (which in jQuery >= 1.5 is a promise).
-				var dfd = $.Deferred();
-				return dfd.resolve([]);
+				var dfd = $.Deferred(),
+					posts = JSON.parse(localStorage.getItem('backboneBlog')) || hydrateBlog();
+
+				switch (method) {
+					case 'read':
+						//posts = JSON.parse(localStorage.getItem('backboneBlog')) || hydrateBlog();
+						break;
+					case 'create':
+						//posts.push(model.toJSON());
+						console.log('adding new post');
+						break;
+					case 'update':
+						console.log('updating post');
+						break;
+					case 'delete':
+						console.log('deleting post');
+						break;
+				}
+
+				if (method !== 'read') {
+					localStorage.setItem('backboneBlog', JSON.stringify(posts));
+				}
+				
+				// Most of the native Backbone pieces that pass through calls to `sync` will pass along
+				// success and error callbacks.
+				if (typeof options.success === 'function') {
+					options.success(posts);
+				}
+
+				return dfd.resolve(posts);
 			};
 		},
 		initTrafficCop = function() {

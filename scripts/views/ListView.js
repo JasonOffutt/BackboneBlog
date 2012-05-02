@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, Backbone, TemplateManager) {
+define(['jquery', 'underscore', 'backbone', 'TemplateManager', 'SummaryView'], function($, _, Backbone, TemplateManager, SummaryView) {
 	var ListView = Backbone.View.extend({
 	    tagName: 'section',
 	    className: 'posts',
@@ -6,8 +6,10 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	    initialize: function(options) {
 	        this.ev = options.ev;
 	        this.childViews = [];
+	        var that = this;
 	        this.model.forEach(function(post) {
-	            childViews.push(new SummaryView({ ev: this.ev, model: post }));
+	        	console.log(post);
+	           	that.childViews.push(new SummaryView({ ev: this.ev, model: post }));
 	        });
 	    },
 	    render: function() {
@@ -16,7 +18,7 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	    		var html = _.template(tmp, that.model.toJSON());
 		        that.$el.html(html);
 		        _.forEach(that.childViews, function(view) {
-		            view.render();
+		            view.render().$el.appendTo(that.$el);
 		        });
 	    	});
 	        

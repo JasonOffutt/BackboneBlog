@@ -28,7 +28,7 @@ require([ 'jquery', 'underscore', 'backbone', 'Extensions', 'BlogPostCollection'
 				router;
 
 			promise.done(function() {
-				router = new BlogRouter({ev: eventAggregator, model: posts});
+				router = new BlogRouter({ ev: eventAggregator, model: posts });
 				Backbone.history.start();
 			})
 		});
