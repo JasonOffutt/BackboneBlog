@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone', 'DetailsView', 'EditView', 'ListView
 		var BlogPresenter = function(options) {
 		    this.ev = options.ev;
 		    this.model = options.model;
-		    this.$container = $('#blogContainer');
+		    this.$container = $('#blog-container');
 
 		    // Bind all events in here...
 		    // Events bound to aggregator are namespaced on type and action (e.g. - 'foo:save').
