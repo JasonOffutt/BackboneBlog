@@ -20,8 +20,9 @@ define(['jquery', 'handlebars'], function($) {
 	            // Once loading is complete, cache the template. Optionally,
 	            // if it's supported by the templating engine, you can pre-compile
 	            // the template before it gets cached.
-	            that.templates[id] = template;
-	            callback.call(that, template);
+	            var tmp = Handlebars.compile(template);
+	            that.templates[id] = tmp;
+	            callback.call(that, tmp);
 	        });
 	    }
 	};

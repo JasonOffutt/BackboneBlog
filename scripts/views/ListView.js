@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'TemplateManager', 'SummaryView'], function($, _, Backbone, TemplateManager, SummaryView) {
+define(['jquery', 'underscore', 'backbone', 'handlebars', 'TemplateManager', 'SummaryView'], function($, _, Backbone, Handlebars, TemplateManager, SummaryView) {
 	var ListView = Backbone.View.extend({
 	    tagName: 'section',
 	    className: 'posts',
@@ -15,7 +15,7 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager', 'SummaryView'], f
 	    render: function() {
 	    	var that = this;
 	    	TemplateManager.get(this.template, function(tmp) {
-	    		var html = _.template(tmp, that.model.toJSON());
+	    		var html = tmp(that.model.toJSON());
 		        that.$el.html(html);
 		        _.forEach(that.childViews, function(view) {
 		            view.render().$el.appendTo(that.$el);

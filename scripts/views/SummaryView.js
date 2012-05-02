@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, Backbone, TemplateManager) {
+define(['jquery', 'underscore', 'backbone', 'handlebars', 'TemplateManager'], function($, _, Backbone, Handlebars, TemplateManager) {
 	// Summary view of a blog post. Title, excerpt, author, date, etc...
 	var SummaryView = Backbone.View.extend({
 	    tagName: 'li',
@@ -23,7 +23,7 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	        // boost in performance.
 	        var that = this;
 	        TemplateManager.get(this.template, function(tmp) {
-	            var html = _.template(tmp, that.model.toJSON());
+	            var html = tmp(that.model.toJSON());
 	            that.$el.html(html);
 	        });
 	        return this;
