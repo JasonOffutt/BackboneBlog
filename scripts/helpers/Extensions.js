@@ -11,7 +11,8 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 	extendSync = function() {
 		Backbone.sync = function(method, model) {
 			var dfd = $.Deferred();
-			return dfd.resolve();
+			//return dfd.promise();
+			return dfd.resolve([]);
 		};
 	},
 	initTrafficCop = function() {

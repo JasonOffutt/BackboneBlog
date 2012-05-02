@@ -3,7 +3,7 @@ require.config({
 		jquery: 				'vendor/jquery/jquery-1.7.2.min',
 		underscore: 			'vendor/underscore/underscore.require',
 		backbone: 				'vendor/backbone/backbone.require',
-		handlebars: 			'vendor/handlebars/handlebars-1.0.0.beta2.min.js',
+		handlebars: 			'vendor/handlebars/handlebars-1.0.0.beta2.min',
 		json: 					'vendor/json/json.require',
 		Extensions: 			'helpers/Extensions',
 		TemplateManager: 		'helpers/TemplateManager',

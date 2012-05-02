@@ -2,7 +2,7 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	var ListView = Backbone.View.extend({
 	    tagName: 'section',
 	    className: 'posts',
-	    template: '#blog',
+	    template: 'blog',
 	    initialize: function(options) {
 	        this.ev = options.ev;
 	        this.childViews = [];

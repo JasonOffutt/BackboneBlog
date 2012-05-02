@@ -1,13 +1,13 @@
-define(['jquery'], function($) {
+define(['jquery', 'handlebars'], function($) {
 	var TemplateManager = {
 	    templates: {},
 	    get: function(id, callback) {
 	        // If the template is already in the cache, just return it.
-	        if (this.tempaltes[id]) {
+	        if (this.templates[id]) {
 	            return callback.call(this, this.templates[id]);
 	        }
 	        // Otherwise, use Traffic Cop to load up the template.
-	        var url = '/templates/' + id + '.html',
+	        var url = 'templates/' + id + '.html',
 	            promise = $.trafficCop(url),
 	            that = this;
 	        promise.done(function(template) {

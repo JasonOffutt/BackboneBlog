@@ -12,6 +12,7 @@ define(['underscore', 'backbone', 'BlogPresenter'], function(_, Backbone, BlogPr
 	    },
 	    initialize: function(options) {
 	        this.ev = options.ev;
+	        this.model = options.model;
 	        this.presenter = new BlogPresenter({ ev: this.ev, model: this.model });
 
 	        // Listen for these post events and update URL/browser history accordingly

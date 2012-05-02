@@ -5,6 +5,7 @@ define(['jquery', 'underscore', 'backbone', 'DetailsView', 'EditView', 'ListView
 		// it will be testable independently from views.
 		var BlogPresenter = function(options) {
 		    this.ev = options.ev;
+		    this.model = options.model;
 		    this.$container = $('#blogContainer');
 
 		    // Bind all events in here...
@@ -33,7 +34,7 @@ define(['jquery', 'underscore', 'backbone', 'DetailsView', 'EditView', 'ListView
 		};
 
 		BlogPresenter.prototype.showIndex = function() {
-		    var listView = new ListView({ ev: this.ev, model: this.model });
+			var listView = new ListView({ ev: this.ev, model: this.model });
 		    this.showView(listView);
 		};
 
