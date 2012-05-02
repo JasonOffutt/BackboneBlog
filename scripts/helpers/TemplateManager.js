@@ -1,4 +1,10 @@
 define(['jquery', 'handlebars'], function($) {
+	
+	// Template Manager module to handle dynamically loading templates from the server.
+	// Depending on whether or not the templating lib of choice supports pre-compiling them
+	// before they get cached, this can be a big performance booster over something like 
+	// LAB.js or Require.js. In this case, handlebars, our templating library of choice
+	// does support precompilation.
 	var TemplateManager = {
 	    templates: {},
 	    get: function(id, callback) {

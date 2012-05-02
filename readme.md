@@ -1,6 +1,6 @@
 # BackboneBlog
 
-BackboneBlog is a project created to serve as a reference or style guide for building larger scale applications in Backbone.js. BackboneBlog is licensed under the MIT license. This isn't meant to be a definitive guide. It's merely a compilation of techniques, patterns and ideas I've compiled through people much smarter than me.
+BackboneBlog is a project created to serve as a reference or style guide for building larger scale applications in Backbone.js. BackboneBlog is licensed under the MIT license. This isn't meant to be a definitive guide. It's merely a compilation of techniques, patterns and ideas I've compiled through my journey as a JS hacker and people much smarter than me.
 
 MIT License
 ===========
