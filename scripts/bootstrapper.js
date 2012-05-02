@@ -4,6 +4,7 @@ require.config({
 		underscore: 			'vendor/underscore/underscore.require',
 		backbone: 				'vendor/backbone/backbone.require',
 		handlebars: 			'vendor/handlebars/handlebars-1.0.0.beta2.min.js',
+		json: 					'vendor/json/json.require',
 		Extensions: 			'helpers/Extensions',
 		TemplateManager: 		'helpers/TemplateManager',
 		BlogPost: 				'models/BlogPost', 

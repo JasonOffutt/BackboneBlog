@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
+define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbone) {
 	var extendView = function() {
 			Backbone.View.prototype.close = function() {
 		    this.remove();
