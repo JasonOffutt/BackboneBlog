@@ -1,4 +1,4 @@
-define(['underscore', 'backbone'], function(Backbone) {
+define(['underscore', 'backbone', 'BlogPresenter'], function(_, Backbone, BlogPresenter) {
 	// This is a router and only a router. Using it as a Controller generally leads to problems
 	// in a larger scale app. If you delegate handling actual application logic to a Presenter
 	// or a 'real' Controller object, you will generally have an easier time keeping things strait

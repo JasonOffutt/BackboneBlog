@@ -1,6 +1,6 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'BlogPost'], function(Backbone, BlogPost) {
 	var BlogPostCollection = Backbone.Model.extend({
-	    model: SomeModel,
+	    model: BlogPost,
 	    // Backbone will automatically sort a collection based on the result of this function.
 	    // Alternatively, there are other sort methods that get delegated through to Underscore.
 	    comparator: function(model) {
