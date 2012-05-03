@@ -4,10 +4,15 @@ define(['backbone'], function(Backbone) {
     // to be pushed out to the Presenter.
     var BlogPost = Backbone.Model.extend({
         initialize: function(options) {
-            var content = this.get('content');
+            var content = this.get('content'),
+                date = new Date(this.get('postDate'));
 
             if (content) {
                 this.set({ excerpt: content.substring(0, 137) + '...' }, { silent: true });
+            }
+
+            if (date) {
+                this.set({ displayDate: date.toLocaleDateString() }, { silent: true });
             }
             
             this.set({ foo: 'bar' }, { silent: true });

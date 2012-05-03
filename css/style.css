@@ -107,6 +107,11 @@ body {
 						margin-left: 90px;
 					}
 
+					.post .form-horizontal textarea {
+						width: 735px;
+						height: 200px;
+					}
+
 			#blog-container ol {
 				padding: 0px;
 				margin: 0px;
@@ -130,6 +135,19 @@ body {
 						padding: 10px 0px;
 						font-size: 16px;
 					}
+
+					.post .well .btn {
+						margin-top: 10px;
+					}
+
+					.post aside {
+						padding-bottom: 5px;
+						color: #999;
+					}
+
+						.post aside span {
+							padding-right: 30px;
+						}
 
 			#blog-container .buttonset {
 				padding-top: 20px;
