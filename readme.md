@@ -2,6 +2,16 @@
 
 BackboneBlog is a project created to serve as a reference or style guide for building larger scale applications in Backbone.js. BackboneBlog falls under the MIT license. This isn't meant to be a definitive guide. It may not work for everybody, and may very well be overkill for many projects. This project is merely the result of a compilation of techniques, patterns and ideas I've accumulated through my journey as a JS hacker and wisdom gleaned through people much smarter than me.
 
+While the focus of this reference is [Backbone.js](http://documentcloud.github.com/backbone/), it also makes use of the following JS projects:
+
+* [jQuery](http://jquery.com)
+* [Handlebars](http://handlebarsjs.com/)
+* [Bootstrap](http://twitter.github.com/bootstrap)
+* [Modernizr](http://modernizr.com/)
+* [Require.js](http://requirejs.org/)
+* [Underscore](http://documentcloud.github.com/underscore/)
+* [JSON2](https://github.com/douglascrockford/JSON-js)
+
 MIT License
 ===========
 
