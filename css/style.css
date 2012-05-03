@@ -1,5 +1,5 @@
 body {
-	background: #f1f1f1;
+	background: #e3e3e3;
 	font-size: 14px;
 	font-family: Helvetica, Arial, sans-serif;
 	color: #222;
@@ -23,19 +23,22 @@ body {
 		}
 
 			.main-wrap > header > hgroup {
-				-moz-text-shadow: 2px 1px 3px #aaa;
-				-webkit-text-shadow: 2px 1px 3px #aaa;
-				-o-text-shadow: 2px 1px 3px #aaa;
-				text-shadow: 2px 1px 3px #aaa;
+				-moz-text-shadow: 1px 1px 1px #aaa;
+				-webkit-text-shadow: 1px 1px 1px #aaa;
+				-o-text-shadow: 1px 1px 1px #aaa;
+				text-shadow: 1px 1px 1px #aaa;
+				color: #666;
 			}
 
 		.main-wrap > #blog-container {
-			border: #ccc;
+			border: 1px solid #999;
+			border-top: 1px solid #fff;
+			border-left: 1px solid #fff;
 			-moz-border-radius: 10px;
 			-webkit-border-radius: 10px;
 			-o-border-radius: 10px;
 			border-radius: 10px;
-			background: #fff;
+			background: #f1f1f1;
 			padding: 30px;
 			width: 900px;
 			-moz-box-shadow: 0px 3px 10px 0px #787878;
@@ -46,13 +49,18 @@ body {
 		}
 
 			#blog-container > section {
-				background: #fff;
+				background: #f1f1f1;
 			}
 
 			#blog-container > .posts,
 			#blog-container > .post {
 				position: relative;
 			}
+
+				.posts > h3 {
+					margin-bottom: 10px;
+					color: #bbb;
+				}
 
 				.posts > .btn,
 				.post > .btn {
@@ -71,15 +79,23 @@ body {
 					font-size: 24px;
 					line-height: normal;
 					border: none;
-					padding-bottom: 20px;
+					padding-bottom: 10px;
 				}
 
 				.post .well {
-					background: #fafafa;
+					background: #efefef;
 					-moz-box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.07);
 					-webkit-box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.07);
 					-o-box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.07);
 					box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.07);
+					border: 1px solid #d9d9d9;
+					border-bottom: 1px solid #fff;
+					border-right: 1px solid #fff;
+					-moz-border-radius: 7px;
+					-webkit-border-radius: 7px;
+					-o-border-radius: 7px;
+					border-radius: 7px;
+					margin: 0px;
 				}
 
 					.post .form-horizontal .control-label {
@@ -99,13 +115,21 @@ body {
 				#blog-container ol > li {
 					list-style-type: none;
 					display: block;
-					padding: 5px 0px 10px;
-					border-bottom: 1px solid #e9e9e9;
+					padding: 0px 0px 15px;
 				}
 
-				#blog-container ol > li:last-child {
-					border-bottom: none;
+				#blog-container ol > li:first-child {
+					margin-top: 20px;
 				}
+
+					.post article.well {
+						padding-top: 15px;
+					}
+
+					.post p {
+						padding: 10px 0px;
+						font-size: 16px;
+					}
 
 			#blog-container .buttonset {
 				padding-top: 20px;
@@ -117,7 +141,26 @@ body {
 
 		.main-wrap > footer {
 			margin: 30px auto;
+			background: #666;
+			-moz-box-shadow: 0px 3px 10px 0px #787878;
+			-webkit-box-shadow: 0px 3px 10px 0px #787878;
+			-o-box-shadow: 0px 3px 10px 0px #787878;
+			box-shadow: 0px 3px 10px 0px #787878;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			-o-border-radius: 10px;
+			border-radius: 10px;
+			text-align: right;
+			padding: 30px;
+			width: 900px;
+			border: 1px solid #444;
+			border-top: 1px solid #ccc;
+			border-left: 1px solid #ccc;
 		}
+
+			.main-wrap > footer a {
+				color: #f1f1f1;
+			}
 
 #gh-container {
 	position: absolute;

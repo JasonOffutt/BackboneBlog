@@ -7,7 +7,7 @@ define(['backbone'], function(Backbone) {
             var content = this.get('content');
 
             if (content) {
-                this.set({ excerpt: content.substring(0, 140) }, { silent: true });
+                this.set({ excerpt: content.substring(0, 137) + '...' }, { silent: true });
             }
             
             this.set({ foo: 'bar' }, { silent: true });
