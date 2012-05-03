@@ -15,15 +15,19 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 		}
 		hydrateBlog = function() {
 			var posts = [],
-				title;
+				title,
+				id;
 			for (var i = 0; i < 5; i++) {
+				id = i + 1;
 				posts.push({
-					title: 'Post #' + (i + 1),
+					id: id,
+					title: 'Post #' + id,
 					content: 'This is a spiffy blog post.',
 					author: 'Ima Testguy',
 					postDate: new Date()
 				});
 			}
+			localStorage.setItem('backboneBlog', JSON.stringify(posts));
 			return posts;
 		},
 		extendSync = function() {

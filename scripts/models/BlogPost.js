@@ -4,6 +4,12 @@ define(['backbone'], function(Backbone) {
     // to be pushed out to the Presenter.
     var BlogPost = Backbone.Model.extend({
         initialize: function(options) {
+            var content = this.get('content');
+
+            if (content) {
+                this.set({ excerpt: content.substring(0, 140) }, { silent: true });
+            }
+            
             this.set({ foo: 'bar' }, { silent: true });
         },
         // Per Backbone's docs, `validate` should only return something if there is a validation error.
