@@ -6,8 +6,9 @@ define(['underscore', 'backbone', 'BlogPresenter'], function(_, Backbone, BlogPr
 	var BlogRouter = Backbone.Router.extend({
 	    routes: {
 	        '': 'index',
-	        'post/:id': 'post',
-	        'post/:id/edit': 'edit',
+	        'view/:id': 'post',
+	        'edit/:id': 'edit',
+	        'new': 'create',
 	        '*options': 'index'  // Catchall route
 	    },
 	    initialize: function(options) {
@@ -26,7 +27,10 @@ define(['underscore', 'backbone', 'BlogPresenter'], function(_, Backbone, BlogPr
 	        this.presenter.showPost(id);
 	    },
 	    edit: function(id) {
-	        this.presenter.showEdit(id);
+	        this.presenter.editPost(id);
+	    },
+	    create: function() {
+	    	this.presenter.newPost();
 	    },
 	    navigateTo: function(id, uri) {
 	        // Update the URL hash and browser history

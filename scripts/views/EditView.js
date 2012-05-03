@@ -14,7 +14,7 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	    render: function() {
 	        var that = this;
 	        TemplateManager.get(this.template, function(tmp) {
-	            var html = _.template(tmp, that.model.toJSON());
+	            var html = tmp(that.model.toJSON());
 	            that.$el.html(html);
 	        });
 	        return this;
@@ -29,7 +29,7 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	        return false;
 	    },
 	    cancelClicked: function(e) {
-	        this.el.trigger('post:list');
+	        this.ev.trigger('post:list');
 	        return false;
 	    }
 	});

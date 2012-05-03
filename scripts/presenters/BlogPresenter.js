@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'DetailsView', 'EditView', 'ListView', 'SummaryView'], 
-	function($, _, Backbone, DetailsView, EditView, ListView, SummaryView) {
+define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView', 'ListView', 'SummaryView'], 
+	function($, _, Backbone, BlogPost, DetailsView, EditView, ListView, SummaryView) {
 		// Using the notion of a Presenter rather than a Controller. Doing things this way allows us to
 		// completely decouple views from the DOM. As long as the Presenter has a reference to jQuery,
 		// it will be testable independently from views.
@@ -56,6 +56,12 @@ define(['jquery', 'underscore', 'backbone', 'DetailsView', 'EditView', 'ListView
 		    var post = this.model.get(id),
 		        editView = new EditView({ ev: this.ev, model: post });
 		    this.showView(editView);
+		};
+
+		BlogPresenter.prototype.newPost = function() {
+			var post = new BlogPost(),
+				editView = new EditView({ ev: this.ev, model: post });
+			this.showView(editView);
 		};
 
 		BlogPresenter.prototype.savePost = function(attrs, post) {
