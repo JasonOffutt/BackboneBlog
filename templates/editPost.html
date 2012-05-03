@@ -1,19 +1,33 @@
-<article>
-	<fieldset>
-		<legend>Edit post</legend>
-		<dl>
-			<dt>Title</dt>
-			<dd><input type="text" id="title" value="{{title}}" /></dd>
-			<dt>Author</dt>
-			<dd><input type="text" id="author" value="{{author}}" /></dd>
-			<dt>Post Date</dt>
-			<dd><input type="text" id="postDate" value="{{postDate}}" /></dd>
-			<dt>Post</dt>
-			<dd><textarea id="content">{{content}}</textarea></dd>
-		</dl>
-	</fieldset>
-	<div class="buttonset">
-		<input type="submit" class="btn btn-success" id="submit" value="Save" />
-		<a href="#" class="cancel">Cancel</a>
-	</div>
-</article>
+<fieldset>
+	{{#if id}}
+	<legend>Editing '{{title}}'</legend>
+	{{else}}
+	<legend>Create A New Post</legend>
+	{{/if}}
+	<form class="well form-horizontal">
+		<div class="control-group">
+			<label for="title" class="control-label">Title</label>
+			<div class="controls"><input type="text" id="title" value="{{title}}" /></div>
+		</div>
+		<div class="control-group">
+			<label for="author" class="control-label">Author</label>
+			<div class="controls"><input type="text" id="author" value="{{author}}" /></div>
+		</div>
+		<div class="control-group">
+			<label for="postDate" class="control-label">Post Date</label>
+			<div class="controls"><input type="text" id="postDate" value="{{postDate}}" /></div>
+		</div>
+		<div class="control-group">
+			<label for="content" class="control-label">Post</label>
+			<div class="controls"><textarea id="content">{{content}}</textarea></div>
+		</div>
+	</form>
+</fieldset>
+<div class="buttonset">
+	<input type="submit" class="btn btn-success" id="submit" value="Save" />
+	{{#if id}}
+	<a href="#view/{{id}}" class="cancel" title="Cancel">Cancel</a>
+	{{else}}
+	<a href="#" class="cancel" title="Cancel">Cancel</a>
+	{{/if}}
+</div>

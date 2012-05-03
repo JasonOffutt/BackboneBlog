@@ -22,6 +22,13 @@ body {
 			margin: 20px auto 0px;
 		}
 
+			.main-wrap > header > hgroup {
+				-moz-text-shadow: 2px 1px 3px #aaa;
+				-webkit-text-shadow: 2px 1px 3px #aaa;
+				-o-text-shadow: 2px 1px 3px #aaa;
+				text-shadow: 2px 1px 3px #aaa;
+			}
+
 		.main-wrap > #blog-container {
 			border: #ccc;
 			-moz-border-radius: 10px;
@@ -41,6 +48,48 @@ body {
 			#blog-container > section {
 				background: #fff;
 			}
+
+			#blog-container > .posts,
+			#blog-container > .post {
+				position: relative;
+			}
+
+				.posts > .btn,
+				.post > .btn {
+					position: absolute;
+					top: 0px;
+					right: 0px;
+					box-shadow: 0px 0px 7px -1px #999;
+				}
+
+				.post legend {
+					margin: 0;
+					font-family: inherit;
+					font-weight: bold;
+					color: inherit;
+					text-rendering: optimizelegibility;
+					font-size: 24px;
+					line-height: normal;
+					border: none;
+					padding-bottom: 20px;
+				}
+
+				.post .well {
+					background: #fafafa;
+					-moz-box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.07);
+					-webkit-box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.07);
+					-o-box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.07);
+					box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.07);
+				}
+
+					.post .form-horizontal .control-label {
+						width: 70px;
+						font-weight: bold;
+					}
+
+					.post .form-horizontal .controls {
+						margin-left: 90px;
+					}
 
 			#blog-container ol {
 				padding: 0px;
@@ -70,10 +119,20 @@ body {
 			margin: 30px auto;
 		}
 
+#gh-container {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 170px;
+	height: 170px;
+	overflow: hidden;
+	z-index: 2;
+}
+
 #github {
-	right: -65px;
-	height: 30px;
-	top: 40px;
+	right: -45px;
+	height: 50px;
+	top: 50px;
 	position: absolute;
 	text-decoration: none;
 	width: 250px;

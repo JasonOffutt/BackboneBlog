@@ -29,7 +29,8 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	        return false;
 	    },
 	    cancelClicked: function(e) {
-	        this.ev.trigger('post:list');
+	    	var href = $(e.currentTarget).attr('href');
+	        this.ev.trigger('post:list', null, href);
 	        return false;
 	    }
 	});
