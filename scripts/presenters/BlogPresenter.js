@@ -45,8 +45,10 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 		};
 
 		BlogPresenter.prototype.deletePost = function(post) {
-		    var promise = post.destroy(),
+		    var promise,
 		    	that = this;
+		    this.model.remove(post);
+		    promise = post.destroy(),
 		    promise.done(function() {
 		        that.ev.trigger('post:list');
 		    });
@@ -68,14 +70,16 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 		    // `save` will first call `validate`. If `validate` is successful, it will call
 		    // `Backbone.sync`, which returns a jQuery promise, that can be used to bind callbacks
 		    // to fire additional events when the operation completes.
-		    var isNew = post.isNew(),
-		    	promise = post.save(attrs),
+		    var promise,
 		    	that = this;
+
+		    if (post.isNew()) {
+		    	this.model.add(post);
+		    }
+
+		    promise = post.save(attrs)
 		    if (promise) {
 		        promise.done(function() {
-		        	if (isNew) {
-		        		that.model.add(post);
-		        	}
 		        	that.ev.trigger('post:list');
 		            // Do something now that the save is complete
 		        });

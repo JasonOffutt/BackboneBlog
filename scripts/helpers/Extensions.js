@@ -41,26 +41,23 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 				var dfd = $.Deferred(),
 					posts = JSON.parse(localStorage.getItem('backboneBlog')) || hydrateBlog();
 
-				switch (method) {
-					case 'create':
-						model.set({ id: posts.length + 1 }, { silent: true });
-						posts.push(model.toJSON());
-						break;
-					case 'update':
-						var ids = _.pluck(posts, 'id'),
-							index = _.indexOf(ids, model.get('id'));
-						posts[index] = model.toJSON();
-						break;
-					case 'delete':
-						var post = _.find(posts, function(p) {
-							return p.id === model.get('id');
-						});
-						posts.pop(post);
-						break;
+				if (method === 'create') {
+					var id = _.max(posts, function(p) {
+						return p.id;
+					});
+					model.set({ id: id }, { silent: true });
+				} else if (method === 'delete') {
+					var post = _.find(posts, function(p) {
+						return p.id === model.get('id');
+					});
+					posts.pop(post);
 				}
 
 				if (method !== 'read') {
-					console.log('writing to local storage');
+					if (model.collection) {
+						posts = model.collection.toArray();	
+					}
+					
 					localStorage.setItem('backboneBlog', JSON.stringify(posts));
 				}
 				
