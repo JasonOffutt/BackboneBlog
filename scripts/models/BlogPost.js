@@ -4,18 +4,25 @@ define(['backbone'], function(Backbone) {
     // to be pushed out to the Presenter.
     var BlogPost = Backbone.Model.extend({
         initialize: function(options) {
-            var content = this.get('content'),
-                date = new Date(this.get('postDate'));
-
-            if (content) {
+            this.setExcerpt();
+            this.setDisplayDate();
+            _.bindAll(this);
+            this.on('change:content', this.setExcerpt);
+            this.on('change:postDate', this.setDisplayDate);
+        },
+        setExcerpt: function() {
+            var content = this.get('content') || '';
+            if (content.length > 140) {
                 this.set({ excerpt: content.substring(0, 137) + '...' }, { silent: true });
+            } else {
+                this.set({ excerpt: content }, { silent: true });
             }
-
+        },
+        setDisplayDate: function() {
+            var date = new Date(this.get('postDate'));
             if (date) {
                 this.set({ displayDate: date.toLocaleDateString() }, { silent: true });
             }
-            
-            this.set({ foo: 'bar' }, { silent: true });
         },
         // Per Backbone's docs, `validate` should only return something if there is a validation error.
         // If so, I've found it useful to return an array of hashes with the key equaling the property

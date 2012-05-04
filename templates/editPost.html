@@ -1,6 +1,6 @@
 <fieldset>
 	{{#if id}}
-	<legend>Editing '{{title}}'</legend>
+	<legend>Editing "{{title}}"</legend>
 	{{else}}
 	<legend>Create A New Post</legend>
 	{{/if}}
@@ -24,10 +24,17 @@
 	</form>
 </fieldset>
 <div class="buttonset">
-	<input type="submit" class="btn btn-success" id="submit" value="Save" />
+	{{#if id}}
+	<a class="btn btn-success" title="Save Changes"><i class="icon-ok icon-white"></i> Save Changes</a>
+	{{else}}
+	<a class="btn btn-success" title="Save New Post"><i class="icon-ok icon-white"></i> Save New Post</a>
+	{{/if}}
 	{{#if id}}
 	<a href="#view/{{id}}" class="cancel" title="Cancel">Cancel</a>
 	{{else}}
 	<a href="#" class="cancel" title="Cancel">Cancel</a>
+	{{/if}}
+	{{#if id}}
+	<a href="#delete/{{id}}" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete Post</a>
 	{{/if}}
 </div>

@@ -7,7 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'handlebars', 'TemplateManager', 'Su
 	        this.ev = options.ev;
 	        this.childViews = [];
 	        var that = this;
-	        this.model.forEach(function(post) {
+	        this.model.sort().forEach(function(post) {
 	           	that.childViews.push(new SummaryView({ ev: this.ev, model: post }));
 	        });
 	    },

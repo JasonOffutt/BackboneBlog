@@ -42,29 +42,36 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 					posts = JSON.parse(localStorage.getItem('backboneBlog')) || hydrateBlog();
 
 				switch (method) {
-					case 'read':
-						//posts = JSON.parse(localStorage.getItem('backboneBlog')) || hydrateBlog();
-						break;
 					case 'create':
-						//posts.push(model.toJSON());
-						console.log('adding new post');
+						model.set({ id: posts.length + 1 }, { silent: true });
+						posts.push(model.toJSON());
 						break;
 					case 'update':
-						console.log('updating post');
+						var ids = _.pluck(posts, 'id'),
+							index = _.indexOf(ids, model.get('id'));
+						posts[index] = model.toJSON();
 						break;
 					case 'delete':
-						console.log('deleting post');
+						var post = _.find(posts, function(p) {
+							return p.id === model.get('id');
+						});
+						posts.pop(post);
 						break;
 				}
 
 				if (method !== 'read') {
+					console.log('writing to local storage');
 					localStorage.setItem('backboneBlog', JSON.stringify(posts));
 				}
 				
 				// Most of the native Backbone pieces that pass through calls to `sync` will pass along
 				// success and error callbacks.
 				if (typeof options.success === 'function') {
-					options.success(posts);
+					if (model instanceof Backbone.Model) {
+						options.success(model);
+					} else {
+						options.success(posts);
+					}
 				}
 
 				return dfd.resolve(posts);

@@ -4,8 +4,9 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	    className: 'post',
 	    template: 'editPost',
 	    events: {
-	        'click .save': 'saveClicked',
-	        'click .cancel': 'cancelClicked'
+	        'click .btn-success': 'saveClicked',
+	        'click .cancel': 'cancelClicked',
+	        'click .btn-danger': 'deleteClicked'
 	    },
 	    initialize: function(options) {
 	        this.ev = options.ev;
@@ -23,14 +24,21 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	        var attrs = {
 	            title: this.$el.find('#title').val(),
 	            content: this.$el.find('#content').val(),
-	            postDate: this.$el.find('#postDate').val()
+	            postDate: this.$el.find('#postDate').val(),
+	            author: this.$el.find('#author').val()
 	        };
-	        this.el.trigger('post:save', attrs, this.model);
+	        this.ev.trigger('post:save', attrs, this.model);
 	        return false;
 	    },
 	    cancelClicked: function(e) {
 	    	var href = $(e.currentTarget).attr('href');
 	        this.ev.trigger('post:list', null, href);
+	        return false;
+	    },
+	    deleteClicked: function() {
+	    	if (confirm('Are you sure you want to delete "' + this.model.get('title') + '"?')) {
+	            this.ev.trigger('post:delete', this.model);
+	        }
 	        return false;
 	    }
 	});

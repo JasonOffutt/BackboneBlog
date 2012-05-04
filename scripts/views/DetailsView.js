@@ -5,7 +5,7 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	    template: 'blogPost',
 	    events: {
 	        'click .edit': 'editClicked',
-	        'click .delete': 'deleteClicked',
+	        'click .btn-danger': 'deleteClicked',
 	        'click .back': 'backClicked'
 	    },
 	    initialize: function(options) {
@@ -26,7 +26,7 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	    },
 	    deleteClicked: function() {
 	        if (confirm('Are you sure you want to delete "' + this.model.get('title') + '"?')) {
-	            this.ev.trigger('post:delete', this.model.get('id'));
+	            this.ev.trigger('post:delete', this.model);
 	        }
 	        return false;
 	    },

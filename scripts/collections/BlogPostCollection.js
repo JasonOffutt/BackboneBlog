@@ -5,7 +5,7 @@ define(['backbone', 'BlogPost'], function(Backbone, BlogPost) {
 	    // Alternatively, there are other sort methods that get delegated through to Underscore.
 	    comparator: function(model) {
 	        // Sort posts descending...
-	        var date = model.get('dateCreated') || new Date(0);
+	        var date = new Date(model.get('postDate')) || new Date(0);
 	        return -date.getTime();
 	    },
 	    // Part of Backbone's server side magic comes from informing your models and collections
