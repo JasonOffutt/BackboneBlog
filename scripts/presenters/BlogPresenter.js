@@ -33,6 +33,8 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 		    this.$container.append(this.currentView.render().$el);
 		};
 
+		// Method definitions below to handle render various views based on routes
+		// loaded by our BlogRouter module
 		BlogPresenter.prototype.showIndex = function() {
 			var listView = new ListView({ ev: this.ev, model: this.model });
 		    this.showView(listView);
@@ -42,16 +44,6 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 		    var model = this.model.get(id);
 		    var detailsView = new DetailsView({ ev: this.ev, model: model });
 		    this.showView(detailsView);
-		};
-
-		BlogPresenter.prototype.deletePost = function(post) {
-		    var promise,
-		    	that = this;
-		    this.model.remove(post);
-		    promise = post.destroy(),
-		    promise.done(function() {
-		        that.ev.trigger('post:list');
-		    });
 		};
 
 		BlogPresenter.prototype.editPost = function(id) {
@@ -64,6 +56,19 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 			var post = new BlogPost(),
 				editView = new EditView({ ev: this.ev, model: post });
 			this.showView(editView);
+		};
+
+		// Since Presenters generally "know" more than a traditional Controller would
+		// (i.e. - A bit of presentation logic and manipulation of models), we need a few methods
+		// to handle basic CRUD operations...
+		BlogPresenter.prototype.deletePost = function(post) {
+		    var promise,
+		    	that = this;
+		    this.model.remove(post);
+		    promise = post.destroy(),
+		    promise.done(function() {
+		        that.ev.trigger('post:list');
+		    });
 		};
 
 		BlogPresenter.prototype.savePost = function(attrs, post) {
