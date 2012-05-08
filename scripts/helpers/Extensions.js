@@ -12,7 +12,7 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 			        this.onClose.call(this);
 			    }
 			};
-		}
+		},
 		hydrateBlog = function() {
 			var posts = [],
 				title,
