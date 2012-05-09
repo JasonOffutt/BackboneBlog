@@ -46,22 +46,35 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 			Backbone.sync = function(method, model, options) {
 				// Wrapping load operations for local storage API in a jQuery Deferred to preserve
 				// the interface of `sync`. Generally, you can expect to receive back the expression
-				// result of `$.ajax` (which in jQuery >= 1.5 is a promise).
+				// result of `$.ajax` (which in jQuery >= 1.5 is a promise). See additional notes
+				// for return statement below.
 				var dfd = $.Deferred(),
 					posts = JSON.parse(localStorage.getItem('backboneBlog')) || hydrateBlog();
 
+				// The `method` Backbone passes in will be 'create', 'read', 'update', or 'delete'.
+				// We're really only concerned about creates and deletes here...
 				if (method === 'create') {
-					var id = _.max(posts, function(p) {
-						return p.id;
-					});
-					model.set({ id: id }, { silent: true });
+					// Find the highest vaue in the 'id' property and increment it.
+					var newest = _.max(posts, function(p) {
+							return p.id;
+						}),
+						id = posts.length;
+
+					if (newest && newest.id) {
+						id = newest.id;
+					}
+
+					console.log(id);
+					model.set({ id: ++id }, { silent: true });
 				} else if (method === 'delete') {
+					// Find the first post with the same id and remove it from the list of posts
 					var post = _.find(posts, function(p) {
 						return p.id === model.get('id');
 					});
 					posts.pop(post);
 				}
 
+				// If the method is any thing but 'read', we need to write our changes to local storage.
 				if (method !== 'read') {
 					if (model.collection) {
 						posts = model.collection.toArray();	
@@ -80,6 +93,11 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 					}
 				}
 
+				// Pass through the jQuery deferred object so callbacks can be appended to it.
+				// Backbone expects this behavior. The native `sync` method returns the result of
+				// an `$.ajax()` call (e.g. - `return $.ajax(options);`). Since jQuery ajax uses
+				// deferreds under the covers, we can mock its behavior by using them here, even
+				// though it's not necessarily needed.
 				return dfd.resolve(posts);
 			};
 		},

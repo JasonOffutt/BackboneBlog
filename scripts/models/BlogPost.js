@@ -33,12 +33,18 @@ define(['backbone'], function(Backbone) {
         validate: function(options) {
             this.modelErrors = null;
             var errors = [];
+
+            // First we need to check if any of these required fields are present in the opbions object.
+            // If so, and they're not set (falsy), then we can add an error to the list.
             if (typeof options.content !== 'undefined' && !options.content) {
                 errors.push({ content: 'Post content is required.' });
             }
             if (typeof options.title !== 'undefined' && !options.title) {
                 errors.push({ title: 'Post title is required.' });
             }
+
+            // Per Backbone documentation, if there are no validation errors, return nothing.
+            // Otherwise you can return a string or an object.
             if (errors.length > 0) {
                 this.modelErrors = errrors;
                 return errors;

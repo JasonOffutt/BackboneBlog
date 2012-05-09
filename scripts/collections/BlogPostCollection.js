@@ -14,7 +14,7 @@ define(['backbone', 'BlogPost'], function(Backbone, BlogPost) {
 	    // when we call things like `save()` and `destroy()` on models, Backbone will by default
 	    // make a RESTful call with this URL as its base (e.g. - DELETE /posts/:id)
 	    url: function() {
-	        return '';  //'/posts';
+	        return '/posts';
 	    }
 	});
 
