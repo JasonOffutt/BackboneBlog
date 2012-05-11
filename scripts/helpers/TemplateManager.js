@@ -1,4 +1,4 @@
-define(['jquery', 'handlebars'], function($) {
+define(['jquery', 'handlebars'], function($, Handlebars) {
 	
 	// Template Manager module to handle dynamically loading templates from the server.
 	// Depending on whether or not the templating lib of choice supports pre-compiling them
