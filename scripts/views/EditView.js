@@ -12,11 +12,12 @@ define(['jquery', 'underscore', 'backbone', 'TemplateManager'], function($, _, B
 	        this.ev = options.ev;
 	        _.bindAll(this);
 	    },
-	    render: function() {
+	    render: function(callback) {
 	        var that = this;
 	        TemplateManager.get(this.template, function(tmp) {
 	            var html = tmp(that.model.toJSON());
 	            that.$el.html(html);
+	            that.onRenderComplete(callback);
 	        });
 	        return this;
 	    },

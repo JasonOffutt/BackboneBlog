@@ -2,11 +2,11 @@
 // reference these modules by name, rather than typing in the path over and over.
 require.config({
 	paths: {
-		jquery: 				'vendor/jquery/jquery-1.7.2.min',
-		underscore: 			'vendor/underscore/underscore.require',
-		backbone: 				'vendor/backbone/backbone.require',
-		handlebars: 			'vendor/handlebars/handlebars-1.0.0.beta2.min',
-		json: 					'vendor/json/json.require',
+		jquery: 				'vendor/jQuery/jquery-1.7.2.min',
+		underscore: 			'vendor/Underscore/underscore.require',
+		backbone: 				'vendor/Backbone/backbone.require',
+		handlebars: 			'vendor/Handlebars/handlebars.require',
+		json: 					'vendor/JSON/json.require',
 		Extensions: 			'helpers/Extensions',
 		TemplateManager: 		'helpers/TemplateManager',
 		BlogPost: 				'models/BlogPost', 

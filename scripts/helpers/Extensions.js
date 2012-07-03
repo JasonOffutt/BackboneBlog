@@ -16,6 +16,19 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 			        this.onClose.call(this);
 			    }
 			};
+
+			Backbone.View.prototype.onRenderComplete = function(callback) {
+				if (typeof callback === 'function') {
+					callback.call(this);
+				}
+			};
+
+			Backbone.View.prototype.rendering = function(callback) {
+				var that = this;
+				_.defer(function() {
+					that.onRenderComplete(callback);
+				});
+			};
 		},
 		// Creating a little helper here to populate the blog when it gets loaded for the first time
 		hydrateBlog = function() {
