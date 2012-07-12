@@ -1,5 +1,7 @@
 // Define a Require.js module. Pass in an array of dependencies, and define our Backbone router...
-define(['underscore', 'backbone', 'BlogPresenter'], function(_, Backbone, BlogPresenter) {
+define(['underscore', 'backbone', 'BlogPresenter'], function (_, Backbone, BlogPresenter) {
+	'use strict';
+
 	// This is a router and only a router. Using it as a Controller generally leads to problems
 	// in a larger scale app. If you delegate handling actual application logic to a Presenter
 	// or a 'real' Controller object, you will generally have an easier time keeping things strait
@@ -12,7 +14,7 @@ define(['underscore', 'backbone', 'BlogPresenter'], function(_, Backbone, BlogPr
 	        'new': 'create',
 	        '*options': 'index'  // Catchall route
 	    },
-	    initialize: function(options) {
+	    initialize: function (options) {
 	        this.ev = options.ev;
 	        this.model = options.model;
 	        this.presenter = new BlogPresenter({ ev: this.ev, model: this.model });
@@ -24,21 +26,21 @@ define(['underscore', 'backbone', 'BlogPresenter'], function(_, Backbone, BlogPr
 
 	    // Route handlers to call the correct presenter method based on URL hash
 	    // when page loads
-	    index: function() {
+	    index: function () {
 	        this.presenter.showIndex();
 	    },
-	    post: function(id) {
+	    post: function (id) {
 	        this.presenter.showPost(id);
 	    },
-	    edit: function(id) {
+	    edit: function (id) {
 	        this.presenter.editPost(id);
 	    },
-	    create: function() {
+	    create: function () {
 	    	this.presenter.newPost();
 	    },
 
 	    // Helper method to handle hash changes during runtime
-	    navigateTo: function(id, uri) {
+	    navigateTo: function (id, uri) {
 	        // Update the URL hash and browser history
 	        this.navigate(uri, true);
 	    }

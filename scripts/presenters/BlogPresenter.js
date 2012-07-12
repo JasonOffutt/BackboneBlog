@@ -1,9 +1,11 @@
 define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView', 'ListView', 'SummaryView'], 
-	function($, _, Backbone, BlogPost, DetailsView, EditView, ListView, SummaryView) {
+	function ($, _, Backbone, BlogPost, DetailsView, EditView, ListView, SummaryView) {
+		'use strict';
+
 		// Using the notion of a Presenter rather than a Controller. Doing things this way allows us to
 		// completely decouple views from the DOM. As long as the Presenter has a reference to jQuery,
 		// it will be testable independently from views.
-		var BlogPresenter = function(options) {
+		var BlogPresenter = function (options) {
 		    this.ev = options.ev;
 		    this.model = options.model;
 		    this.$container = $('#blog-container');
@@ -22,7 +24,7 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 
 		// Presents a uniform function for injecting Views into the DOM. This allows us to manage
 		// DOM manipulation in a single place.
-		BlogPresenter.prototype.showView = function(view) {
+		BlogPresenter.prototype.showView = function (view) {
 		    if (this.currentView) {
 		        // Call `close()` on the current view to clean up memory. Removes elements from DOM
 		        // and will unbind any event listeners on said DOM elements and references to Models
@@ -35,24 +37,24 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 
 		// Method definitions below to handle render various views based on routes
 		// loaded by our BlogRouter module
-		BlogPresenter.prototype.showIndex = function() {
+		BlogPresenter.prototype.showIndex = function () {
 			var listView = new ListView({ ev: this.ev, model: this.model });
 		    this.showView(listView);
 		};
 
-		BlogPresenter.prototype.showPost = function(id) {
+		BlogPresenter.prototype.showPost = function (id) {
 		    var model = this.model.get(id);
 		    var detailsView = new DetailsView({ ev: this.ev, model: model });
 		    this.showView(detailsView);
 		};
 
-		BlogPresenter.prototype.editPost = function(id) {
+		BlogPresenter.prototype.editPost = function (id) {
 		    var post = this.model.get(id),
 		        editView = new EditView({ ev: this.ev, model: post });
 		    this.showView(editView);
 		};
 
-		BlogPresenter.prototype.newPost = function() {
+		BlogPresenter.prototype.newPost = function () {
 			var post = new BlogPost(),
 				editView = new EditView({ ev: this.ev, model: post });
 			this.showView(editView);
@@ -61,7 +63,7 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 		// Since Presenters generally "know" more than a traditional Controller would
 		// (i.e. - A bit of presentation logic and manipulation of models), we need a few methods
 		// to handle basic CRUD operations...
-		BlogPresenter.prototype.deletePost = function(post) {
+		BlogPresenter.prototype.deletePost = function (post) {
 		    var promise,
 		    	that = this;
 		    this.model.remove(post);
@@ -71,7 +73,7 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 		    });
 		};
 
-		BlogPresenter.prototype.savePost = function(attrs, post) {
+		BlogPresenter.prototype.savePost = function (attrs, post) {
 		    // `save` will first call `validate`. If `validate` is successful, it will call
 		    // `Backbone.sync`, which returns a jQuery promise, that can be used to bind callbacks
 		    // to fire additional events when the operation completes.
@@ -84,7 +86,7 @@ define(['jquery', 'underscore', 'backbone', 'BlogPost', 'DetailsView', 'EditView
 
 		    promise = post.save(attrs)
 		    if (promise) {
-		        promise.done(function() {
+		        promise.done(function () {
 		        	that.ev.trigger('post:list');
 		            // Do something now that the save is complete
 		        });

@@ -1,16 +1,18 @@
-define(['backbone'], function(Backbone) {
+define(['backbone'], function (Backbone) {
+    'use strict';
+
     // Models will house domain specific functionality. They should know how to do thing that are 
     // within their domain, authorize and validate themselves. Application logic, however, ought
     // to be pushed out to the Presenter.
     var BlogPost = Backbone.Model.extend({
-        initialize: function(options) {
+        initialize: function (options) {
             this.setExcerpt();
             this.setDisplayDate();
             _.bindAll(this);
             this.on('change:content', this.setExcerpt);
             this.on('change:postDate', this.setDisplayDate);
         },
-        setExcerpt: function() {
+        setExcerpt: function () {
             var content = this.get('content') || '';
             if (content.length > 140) {
                 this.set({ excerpt: content.substring(0, 137) + '...' }, { silent: true });
@@ -18,7 +20,7 @@ define(['backbone'], function(Backbone) {
                 this.set({ excerpt: content }, { silent: true });
             }
         },
-        setDisplayDate: function() {
+        setDisplayDate: function () {
             var date = new Date(this.get('postDate'));
             if (date) {
                 this.set({ displayDate: date.toLocaleDateString() }, { silent: true });
@@ -30,7 +32,7 @@ define(['backbone'], function(Backbone) {
         // `validate is` fired when you call `set`, `save` and `isValid` on a model. If it fails, it will
         // generally fail silently. So there's no need to wrap it in an `if` check... see `save` method
         // presenter for example usage.
-        validate: function(options) {
+        validate: function (options) {
             this.modelErrors = null;
             var errors = [];
 

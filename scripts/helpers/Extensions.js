@@ -1,11 +1,13 @@
-define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbone) {
-	var extendView = function() {
+define(['jquery', 'json', 'underscore', 'backbone'], function ($, JSON, _, Backbone) {
+	'use strict';
+
+	var extendView = function () {
 			
 			// Add a `close` utility method to Backbone.View to serve as a wrapper for `remove`, and `unbind`.
 			// This allows a view to clean up after itself by removing its DOM elements, unbind any events, and
 			// call an `onClose` method in case any additional cleanup needs to happen (e.g. - unbinding any
 			// events explicitly bound to the model or event aggregator).
-			Backbone.View.prototype.close = function() {
+			Backbone.View.prototype.close = function () {
 			    this.remove();  // Removes the DOM representation of the View
 			    this.unbind();  // Unbinds any DOM events associated with the View
 			    if (typeof this.onClose === 'function') {
@@ -17,13 +19,13 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 			    }
 			};
 
-			Backbone.View.prototype.onRenderComplete = function(callback) {
+			Backbone.View.prototype.onRenderComplete = function (callback) {
 				if (typeof callback === 'function') {
 					callback.call(this);
 				}
 			};
 
-			Backbone.View.prototype.rendering = function(callback) {
+			Backbone.View.prototype.rendering = function (callback) {
 				var that = this;
 				_.defer(function() {
 					that.onRenderComplete(callback);
@@ -31,7 +33,7 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 			};
 		},
 		// Creating a little helper here to populate the blog when it gets loaded for the first time
-		hydrateBlog = function() {
+		hydrateBlog = function () {
 			var posts = [],
 				title,
 				id;
@@ -52,11 +54,11 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 			localStorage.setItem('backboneBlog', JSON.stringify(posts));
 			return posts;
 		},
-		extendSync = function() {
+		extendSync = function () {
 			
 			// Overriding `Backbone.synd()` here to use HTML5 local storage rather than sending
 			// the call out to a server.
-			Backbone.sync = function(method, model, options) {
+			Backbone.sync = function (method, model, options) {
 				// Wrapping load operations for local storage API in a jQuery Deferred to preserve
 				// the interface of `sync`. Generally, you can expect to receive back the expression
 				// result of `$.ajax` (which in jQuery >= 1.5 is a promise). See additional notes
@@ -114,7 +116,7 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 				return dfd.resolve(posts);
 			};
 		},
-		initTrafficCop = function() {
+		initTrafficCop = function () {
 
 			// Traffic Cop jQuery plugin to marshall requests being sent to the server.
 			// (found here: https://github.com/ifandelse/TrafficCop)
@@ -127,7 +129,7 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 			// one. This will prevent race conditions when loading things rapid fire from
 			// the server.
 			var inProgress = {};
-			$.trafficCop = function(url, options) {
+			$.trafficCop = function (url, options) {
 			    var reqOptions = url, 
 			        key;
 			    if(arguments.length === 2) {
@@ -148,7 +150,7 @@ define(['jquery', 'json', 'underscore', 'backbone'], function($, JSON, _, Backbo
 
 	// Return an object as our Require.js module, with an `init()` wrapper to wire up all our tweaks
 	return {
-		init: function() {
+		init: function () {
 			extendView();
 			extendSync();
 			initTrafficCop();
